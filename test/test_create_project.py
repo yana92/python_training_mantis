@@ -1,15 +1,6 @@
 from model.project import Project
-#from generator.project import testdata
+from generator.project import testdata
 import pytest
-import random
-import string
-
-
-def random_string(prefix, maxlen):
-    symbols = string.ascii_letters + string.digits
-    return prefix + "".join([random.choice(symbols) for i in range(random.randrange(maxlen))])
-
-testdata = [Project(name=random_string("name", 10))]
 
 @pytest.mark.parametrize("project", testdata, ids=[repr(x) for x in testdata])
 def test_create_project(app, db, project):
